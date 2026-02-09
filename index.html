@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stremio Horizon</title>
+  <meta name="description" content="An alternative UI for Stremio, focused on modern design and usability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1a1a1a;
+      --text: #e8e4de;
+      --text-dim: #6b6560;
+      --accent: #c8956c;
+      --accent-dim: rgba(200, 149, 108, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.75; }
+
+    /* --- Hero --- */
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--border));
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      max-width: 480px;
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* --- Sections --- */
+
+    section {
+      padding: 6rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+    }
+
+    /* --- Screenshots --- */
+
+    .screenshots {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .screenshots img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    /* --- Download --- */
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .download-card {
+      background: var(--surface);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: background 0.25s;
+    }
+
+    .download-card:hover {
+      background: var(--accent-dim);
+    }
+
+    .download-card .platform {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .download-card .format {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .download-card .dl-link {
+      margin-top: auto;
+      padding-top: 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* --- Links --- */
+
+    .repo-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .repo-list li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: var(--surface);
+      color: var(--text);
+      transition: background 0.25s;
+    }
+
+    .repo-list li a:hover {
+      background: var(--accent-dim);
+      opacity: 1;
+    }
+
+    .repo-list .repo-name { font-weight: 500; }
+    .repo-list .repo-desc { font-size: 0.85rem; color: var(--text-dim); }
+
+    .repo-list .arrow {
+      color: var(--text-dim);
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    .repo-list li a:hover .arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    /* --- Footer --- */
+
+    footer {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p + p { margin-top: 0.5rem; }
+
+    /* --- Mobile --- */
+
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.25rem; }
+      .download-grid { grid-template-columns: 1fr; }
+      .repo-list li a { padding: 1rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Stremio Horizon</h1>
+    <p>An alternative UI for Stremio, focused on modern design and usability. Not a replacement — just one person's take on what a great UI could look like.</p>
+  </div>
+
+  <section>
+    <div class="section-label">Screenshots</div>
+    <div class="screenshots">
+      <img src="https://raw.githubusercontent.com/Aqu1tain/stremio-horizon/development/assets/screenshots/board.png" alt="Board" loading="lazy">
+      <img src="https://raw.githubusercontent.com/Aqu1tain/stremio-horizon/development/assets/screenshots/discover.png" alt="Discover" loading="lazy">
+      <img src="https://raw.githubusercontent.com/Aqu1tain/stremio-horizon/development/assets/screenshots/metadetails.png" alt="MetaDetails" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Download</div>
+    <div class="download-grid">
+      <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest" class="download-card">
+        <span class="platform">macOS</span>
+        <span class="format">Apple Silicon &middot; .dmg</span>
+        <span class="dl-link">Download &rarr;</span>
+      </a>
+      <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest" class="download-card">
+        <span class="platform">Linux</span>
+        <span class="format">x64 &middot; .AppImage / .deb</span>
+        <span class="dl-link">Download &rarr;</span>
+      </a>
+      <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest" class="download-card">
+        <span class="platform">Windows</span>
+        <span class="format">x64 &middot; .msi / .exe</span>
+        <span class="dl-link">Download &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Source</div>
+    <ul class="repo-list">
+      <li><a href="https://github.com/Aqu1tain/stremio-horizon">
+        <div>
+          <div class="repo-name">stremio-horizon</div>
+          <div class="repo-desc">Frontend</div>
+        </div>
+        <span class="arrow">&rsaquo;</span>
+      </a></li>
+      <li><a href="https://github.com/Aqu1tain/stremio-horizon-app">
+        <div>
+          <div class="repo-name">stremio-horizon-app</div>
+          <div class="repo-desc">Desktop app (Tauri)</div>
+        </div>
+        <span class="arrow">&rsaquo;</span>
+      </a></li>
+      <li><a href="https://github.com/Aqu1tain/stremio-service">
+        <div>
+          <div class="repo-name">stremio-service</div>
+          <div class="repo-desc">Streaming backend (fork)</div>
+        </div>
+        <span class="arrow">&rsaquo;</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Built on <a href="https://github.com/Stremio/stremio-web">stremio-web</a> by Smart Code. Go <a href="https://github.com/Stremio/stremio-web">star Stremio</a>.</p>
+    <p>GPL-2.0</p>
+  </footer>
+
+</body>
+</html>
