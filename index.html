@@ -63,7 +63,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 6rem 1.5rem 3rem;
+      padding: 10rem 1.5rem 3rem;
     }
 
     .hero h1 {
@@ -239,25 +239,75 @@
       font-weight: 400;
     }
 
-    .star-btn {
-      background: rgba(123, 91, 245, 0.1);
-      border-color: rgba(123, 91, 245, 0.3);
-      color: var(--accent);
-    }
-
-    .star-btn:hover {
+    .download-group.detected > .download-btn,
+    a.download-btn.detected {
       background: var(--accent);
       border-color: var(--accent);
-      color: var(--bg);
+      color: #fff;
+    }
+
+    .download-group.detected > .download-btn .format,
+    a.download-btn.detected .format {
+      background: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .download-group.detected > .download-btn svg,
+    a.download-btn.detected svg {
       opacity: 1;
     }
 
-    .star-btn:hover svg { fill: var(--bg); }
+    .download-group.detected > .toggle-btn {
+      border-color: var(--accent);
+      background: rgba(123, 91, 245, 0.8);
+    }
+
+    .download-group.detected > .toggle-btn .caret {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .star-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .star-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .star-link:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    /* --- Notice --- */
+
+    .notice {
+      max-width: 480px;
+      margin: 2.5rem auto 0;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .notice strong {
+      color: var(--text);
+      font-weight: 500;
+    }
 
     /* --- Sections --- */
 
     section {
-      padding: 5rem 1.5rem;
+      padding: 3rem 1.5rem;
       max-width: 1100px;
       margin: 0 auto;
     }
@@ -342,8 +392,8 @@
     /* --- Mobile --- */
 
     @media (max-width: 600px) {
-      .hero { padding: 4rem 1.25rem 2rem; }
-      section { padding: 4rem 1.25rem; }
+      .hero { padding: 6rem 1.25rem 2rem; }
+      section { padding: 2.5rem 1.25rem; }
       .download-row { flex-direction: column; align-items: stretch; }
       .download-btn { justify-content: center; width: 100%; }
       .download-group { width: 100%; }
@@ -356,43 +406,47 @@
 <body>
 
   <div class="hero">
-    <h1>Stremio Horizon <span class="version">v0.2.1</span></h1>
+    <h1>Stremio Horizon <span class="version">v0.2.2</span></h1>
     <p>A fresh take on the Stremio UI, focused on modern design and usability.</p>
 
     <div class="download-row">
-      <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.1_aarch64.dmg" class="download-btn">
+      <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.2_aarch64.dmg" class="download-btn" data-os="mac">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         macOS <span class="format">.dmg</span>
       </a>
-      <div class="download-group">
-        <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.1_amd64.AppImage" class="download-btn">
+      <div class="download-group" data-os="linux">
+        <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.2_amd64.deb" class="download-btn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.581 19.049c-.55-.446-.336-1.431-.907-1.917.553-3.365-.997-6.331-2.845-8.232-1.551-1.595-1.051-3.147-1.051-4.49 0-2.146-.881-4.41-3.55-4.41-2.853 0-3.635 2.38-3.663 3.738-.068 3.262.659 4.11-1.25 6.484-2.246 2.793-2.577 5.579-2.07 7.057a.237.237 0 00.013.028c-.09.147-.516.904-.376 1.602.19.946 1.08 1.26 1.45 1.326.485.086 1.375-.22 1.743-.678 0 0 .715-.906 1.528-1.119a3.72 3.72 0 011.377-.074c.467.04 1.927.201 2.503-.07.58-.272.752-.705.873-1.068a5.91 5.91 0 01.56-1.205c.252-.332.596-.496.935-.652.403-.185 1.07-.267 1.371-.768.162-.269.259-.58.259-.861 0-.37-.115-.766-.43-1.028l-.007-.005-.006-.005zM12.253 4.41c-.373 0-.674-.272-.674-.607 0-.336.301-.607.674-.607.372 0 .673.271.673.607 0 .335-.3.607-.673.607z"/></svg>
-          Linux <span class="format">.AppImage</span>
+          Linux <span class="format">.deb</span>
         </a>
         <input type="checkbox" id="linux-toggle" class="toggle-check">
         <label for="linux-toggle" class="toggle-btn"><svg class="caret" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5L5 6.5L8 3.5"/></svg></label>
         <div class="format-menu">
-          <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.1_amd64.deb">.deb <span class="fmt-label">Debian / Ubuntu</span></a>
-          <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon-0.2.1-1.x86_64.rpm">.rpm <span class="fmt-label">Fedora / RHEL</span></a>
+          <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon-0.2.2-1.x86_64.rpm">.rpm <span class="fmt-label">Fedora / RHEL</span></a>
+          <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.2_amd64.AppImage">.AppImage <span class="fmt-label">Universal</span></a>
         </div>
       </div>
-      <div class="download-group">
-        <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.1_x64-setup.exe" class="download-btn">
+      <div class="download-group" data-os="windows">
+        <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.2_x64-setup.exe" class="download-btn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
           Windows <span class="format">.exe</span>
         </a>
         <input type="checkbox" id="windows-toggle" class="toggle-check">
         <label for="windows-toggle" class="toggle-btn"><svg class="caret" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5L5 6.5L8 3.5"/></svg></label>
         <div class="format-menu">
-          <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.1_x64_en-US.msi">.msi <span class="fmt-label">Windows Installer</span></a>
+          <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.2.2_x64_en-US.msi">.msi <span class="fmt-label">Windows Installer</span></a>
         </div>
       </div>
     </div>
 
-    <a href="https://github.com/Aqu1tain/stremio-horizon" class="download-btn star-btn" style="margin-top: 1rem;">
+    <a href="https://github.com/Aqu1tain/stremio-horizon" class="star-link">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6.064 5.828 1.48 8.357L12 19.896l-7.416 3.517 1.48-8.357L0 9.228l8.332-1.21z"/></svg>
       Star on GitHub
     </a>
+
+    <div class="notice">
+      <strong>Early development.</strong> Expect bugs and breaking changes until 1.0. Found something? Open an <a href="https://github.com/Aqu1tain/stremio-horizon-app/issues">issue</a> or submit a <a href="https://github.com/Aqu1tain/stremio-horizon-app/pulls">pull request</a>.
+    </div>
   </div>
 
   <section>
@@ -436,5 +490,19 @@
     <p>GPL-2.0</p>
   </footer>
 
+  <script>
+    (() => {
+      const ua = navigator.userAgent;
+      const os = /Mac/.test(ua) ? 'mac' : /Win/.test(ua) ? 'windows' : /Linux/.test(ua) ? 'linux' : null;
+      if (!os) return;
+
+      const row = document.querySelector('.download-row');
+      const match = row.querySelector(`[data-os="${os}"]`);
+      if (!match) return;
+
+      match.classList.add('detected');
+      row.prepend(match);
+    })();
+  </script>
 </body>
 </html>
