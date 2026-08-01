@@ -506,7 +506,9 @@
 
   <script>
     (() => {
-      const releaseUrl = 'https://api.github.com/repos/Aqu1tain/stremio-horizon-app/releases/latest';
+      const releaseHistoryUrl = 'https://api.github.com/repos/Aqu1tain/stremio-horizon-app/releases?per_page=100';
+      const downloadCounterBaseline = 154;
+      const installerDownloadsAtBaseline = 1193;
       const assetPatterns = {
         macArmDmg: /^Stremio\.Horizon_.+_aarch64\.dmg$/,
         macIntelDmg: /^Stremio\.Horizon_.+_x64\.dmg$/,
@@ -531,7 +533,7 @@
       };
 
       const updateReleaseLinks = async () => {
-        const response = await fetch(releaseUrl, {
+        const response = await fetch(releaseHistoryUrl, {
           headers: { Accept: 'application/vnd.github+json' },
         });
 
@@ -539,11 +541,26 @@
           throw new Error(`Release request failed with ${response.status}`);
         }
 
-        const release = await response.json();
+        const releases = await response.json();
+        const release = releases.find((candidate) => !candidate.draft && !candidate.prerelease);
+
+        if (!release) {
+          throw new Error('No stable release found');
+        }
+
         const assets = Array.isArray(release.assets) ? release.assets : [];
+        const currentInstallerDownloads = releases
+          .filter((candidate) => !candidate.draft && !candidate.prerelease)
+          .reduce((total, candidate) => (
+            total + totalReleaseDownloads(Array.isArray(candidate.assets) ? candidate.assets : [])
+          ), 0);
+        const downloadsSinceBaseline = Math.max(
+          0,
+          currentInstallerDownloads - installerDownloadsAtBaseline,
+        );
 
         document.querySelector('[data-release-version]').textContent = release.tag_name;
-        setDownloadCount(downloadCountLabel(totalReleaseDownloads(assets)));
+        setDownloadCount(downloadCountLabel(downloadCounterBaseline + downloadsSinceBaseline));
 
         for (const [assetKey, pattern] of Object.entries(assetPatterns)) {
           const asset = assets.find((candidate) => pattern.test(candidate.name));
@@ -577,7 +594,7 @@
       }
 
       updateReleaseLinks().catch((error) => {
-        setDownloadCount('Download count unavailable');
+        setDownloadCount(downloadCountLabel(downloadCounterBaseline));
         console.warn(error);
       });
     })();
