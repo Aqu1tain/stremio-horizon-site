@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stremio Horizon — A fresh take on the Stremio UI</title>
-  <meta name="description" content="A fresh take on the Stremio UI, focused on modern design and usability. Download the desktop app for macOS, Linux, and Windows.">
-  <meta name="keywords" content="stremio, stremio horizon, media center, streaming, desktop app, tauri, open source">
+  <title>Stremio Horizon (Archived)</title>
+  <meta name="description" content="Stremio Horizon is archived and will not receive further updates. The last release is still available. Nuvio is the alternative we recommend.">
+  <meta name="keywords" content="stremio, stremio horizon, nuvio, media center, streaming, desktop app, tauri, open source">
   <meta name="author" content="akitain">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://stremio-horizon.akitain.fr/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Stremio Horizon">
-  <meta property="og:description" content="A fresh take on the Stremio UI, focused on modern design and usability.">
+  <meta property="og:description" content="Archived. No further updates. The last release is still available, and Nuvio is the alternative we recommend.">
   <meta property="og:url" content="https://stremio-horizon.akitain.fr/">
   <meta property="og:image" content="https://raw.githubusercontent.com/Aqu1tain/stremio-horizon/development/assets/screenshots/board.png">
   <meta property="og:site_name" content="Stremio Horizon">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Stremio Horizon">
-  <meta name="twitter:description" content="A fresh take on the Stremio UI, focused on modern design and usability.">
+  <meta name="twitter:description" content="Archived. No further updates. The last release is still available, and Nuvio is the alternative we recommend.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Aqu1tain/stremio-horizon/development/assets/screenshots/board.png">
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -94,6 +94,93 @@
       font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 2.5rem;
+    }
+
+    /* --- Archive message --- */
+
+    .message {
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      padding: 1.6rem 1.8rem;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .message .message-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .message .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .message p { color: var(--text-dim); }
+    .message p + p { margin-top: 0.75rem; }
+    .message p strong { color: var(--text); font-weight: 500; }
+
+    .message .actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: rgba(123, 91, 245, 0.12);
+      border-color: rgba(123, 91, 245, 0.4);
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .download-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
     }
 
     /* --- Download --- */
@@ -400,6 +487,9 @@
     @media (max-width: 600px) {
       .hero { padding: 6rem 1.25rem 2rem; }
       section { padding: 2.5rem 1.25rem; }
+      .message { padding: 1.25rem; }
+      .message .actions { flex-direction: column; }
+      .btn { justify-content: center; }
       .download-row { flex-direction: column; align-items: stretch; }
       .download-btn { justify-content: center; width: 100%; }
       .download-group { width: 100%; }
@@ -415,6 +505,23 @@
     <h1>Stremio Horizon <span class="version" data-release-version>v0.3.2</span></h1>
     <p>A fresh take on the Stremio UI, focused on modern design and usability.</p>
 
+    <div class="message">
+      <div class="message-title"><span class="tag">Archived</span> This project is no longer maintained.</div>
+      <p>I no longer have the time to develop Stremio Horizon, and <a href="https://nuvio.tv">Nuvio</a> has recently become the best alternative to it: a free, open-source media app with a philosophy very close to mine. I no longer see the point in keeping this project going alongside it.</p>
+      <p><strong>There will be no further updates.</strong> The last release stays available below and still works, but it will not receive new features, bug fixes, or security patches. Thank you to everyone who used Horizon, reported bugs, and contributed.</p>
+      <div class="actions">
+        <a href="https://nuvio.tv" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          Go to Nuvio
+        </a>
+        <a href="https://github.com/tapframe/NuvioStreaming" class="btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          Nuvio on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="download-label">Last release</div>
     <div class="download-row">
       <div class="download-group" data-os="mac">
         <a href="https://github.com/Aqu1tain/stremio-horizon-app/releases/latest/download/Stremio.Horizon_0.3.2_aarch64.dmg" class="download-btn" data-release-asset="macArmDmg">
@@ -459,7 +566,7 @@
     </a>
 
     <div class="notice">
-      <strong>Early development.</strong> Expect bugs and breaking changes until 1.0. Found something? Open an <a href="https://github.com/Aqu1tain/stremio-horizon-app/issues">issue</a> or submit a <a href="https://github.com/Aqu1tain/stremio-horizon-app/pulls">pull request</a>.
+      <strong>Final release.</strong> Stremio Horizon is archived: no more updates, fixes, or support. The repositories are read-only.
     </div>
   </div>
 
@@ -473,7 +580,7 @@
   </section>
 
   <section>
-    <div class="section-label">Source</div>
+    <div class="section-label">Source (archived)</div>
     <ul class="repo-list">
       <li><a href="https://github.com/Aqu1tain/stremio-horizon">
         <div>
